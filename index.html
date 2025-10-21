@@ -56,21 +56,134 @@
     </section>
 
     <!-- ====== GALLERY SECTION ====== -->
-    <section>
-      <h2 class="section-title">Featured Listings</h2>
-      <div class="photo-gallery">
-        <img
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80"
-          alt=""
-        />
-        <img
-          src="https://images.unsplash.com/photo-1560185008-5f0bb1866cab?auto=format&fit=crop&w=400&q=80"
-          alt=""
-        />
-        <img
-          src="https://images.unsplash.com/photo-1600607687920-4e2a5d29a3b9?auto=format&fit=crop&w=400&q=80"
-          alt=""
-        />
+    <section class="getitsold">
+      <h2 class="section-sold-title">GET IT SOLD</h2>
+
+      <!-- First item: Image left, text right -->
+      <div class="sold-item">
+        <div class="sold-img">
+          <img src="images/getitsold1.png" alt="" />
+        </div>
+        <div class="sold-text">
+          <p>
+            <strong>Top Residential Sales Last 5 Years</strong><br />
+            We helped nearly 90 clients in 2021, and closed 28.5 million in
+            sales!
+          </p>
+          <p>
+            Our team works hard everyday to grow and learn, so that we may
+            continue to excel in our market. Our clients deserve our best, & we
+            want to make sure our best is better every year.
+          </p>
+        </div>
+      </div>
+
+      <!-- Second item: Image right, text left -->
+      <div class="sold-item reverse">
+        <div class="sold-img">
+          <img src="images/getitsold2.png" alt="" />
+        </div>
+        <div class="sold-text">
+          <p>
+            <strong>Don't Just List it...</strong><br />
+            Get it SOLD! We exhaust every avenue to ensure our listings are at
+            the fingertips of every possible buyer, getting you top dollar for
+            your home.
+          </p>
+        </div>
+      </div>
+
+      <!-- Third item: Image left, text right -->
+      <div class="sold-item">
+        <div class="sold-img">
+          <img src="images/getitsold3.png" alt="" />
+        </div>
+        <div class="sold-text">
+          <p>
+            <strong>Guide to Buyers</strong><br />
+            Nobody knows the market like we do. Enjoy having a pro at your
+            service. Market analysis, upgrades lists, contractors on speed dial,
+            & more!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="find-dream-home">
+      <video autoplay muted loop playsinline class="bg-video">
+        <source src="images/real-estate.mp4" type="video/mp4" />
+      </video>
+
+      <div class="find-overlay">
+        <h2 class="section-find-title">Find Your Dream Home</h2>
+        <div class="search-container">
+          <h2 class="section-find-listing">Search Listings</h2>
+
+          <form class="search-form">
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input
+                type="text"
+                id="location"
+                placeholder="Enter city or area"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="type">Type</label>
+              <select id="type">
+                <option value="">Any</option>
+                <option value="house">House</option>
+                <option value="condo">Condo</option>
+                <option value="lot">Lot</option>
+                <option value="townhome">Townhome</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="sortby">Sort By</label>
+              <select id="sortby">
+                <option value="newest">Newest</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="bedrooms">Bedrooms</label>
+              <select id="bedrooms">
+                <option value="">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="baths">Baths</label>
+              <select id="baths">
+                <option value="">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="minprice">Min Price</label>
+              <input type="number" id="minprice" placeholder="e.g. 100000" />
+            </div>
+
+            <div class="form-group">
+              <label for="maxprice">Max Price</label>
+              <input type="number" id="maxprice" placeholder="e.g. 500000" />
+            </div>
+
+            <button type="submit" class="search-btn">Search Now</button>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -92,21 +205,20 @@
 
     <!-- ====== JS for scroll + hamburger ====== -->
     <script>
-const header = document.getElementById("mainHeader");
-const headerLogo = document.getElementById("headerLogo");
+      const header = document.getElementById("mainHeader");
+      const headerLogo = document.getElementById("headerLogo");
 
-window.addEventListener("scroll", () => {
-  const scrolled = window.scrollY > 80;
-  header.classList.toggle("scrolled", scrolled);
+      window.addEventListener("scroll", () => {
+        const scrolled = window.scrollY > 80;
+        header.classList.toggle("scrolled", scrolled);
 
-  // Swap logo based on scroll
-  if (scrolled) {
-    headerLogo.src = "images/logo.png"; // normal logo after scroll
-  } else {
-    headerLogo.src = "images/white-logo.png"; // white logo at top
-  }
-});
-
+        // Swap logo based on scroll
+        if (scrolled) {
+          headerLogo.src = "images/logo.png"; // normal logo after scroll
+        } else {
+          headerLogo.src = "images/white-logo.png"; // white logo at top
+        }
+      });
 
       // Make hero content transform on scroll
       const heroOverlay = document.querySelector(".about-overlay");
@@ -121,6 +233,54 @@ window.addEventListener("scroll", () => {
         heroOverlay.style.transform = `translateY(-${translateY}px) scale(${scale})`;
         heroOverlay.style.opacity = opacity;
       });
+
+      // Icon Hero zoom on scroll
+      const iconHero = document.querySelector(".icon-hero");
+      window.addEventListener("scroll", () => {
+        const iconTop = iconHero.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (iconTop < windowHeight) {
+          // small zoom effect (scale up to 1.05)
+          const scale = 1 + (windowHeight - iconTop) / (windowHeight * 20);
+          iconHero.style.transform = `scale(${scale})`;
+        } else {
+          iconHero.style.transform = `scale(1)`; // reset if out of view
+        }
+      });
+
+      // Detect elements entering the viewport
+      const soldItems = document.querySelectorAll(".sold-item");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              observer.unobserve(entry.target); // animate once
+            }
+          });
+        },
+        { threshold: 0.2 } // triggers when 20% of the section is visible
+      );
+
+      soldItems.forEach((item) => observer.observe(item));
+
+      // find your dream home section
+      const dreamSection = document.querySelector(".find-dream-home");
+      const dreamObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              dreamSection.classList.add("show");
+              dreamObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+
+      dreamObserver.observe(dreamSection);
     </script>
   </body>
 </html>
