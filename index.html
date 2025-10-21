@@ -187,6 +187,78 @@
       </div>
     </section>
 
+    <!-- CAROUSEL ICONS -->
+
+    <section class="sponsor-section">
+      <div class="sponsor-img">
+        <img src="images/s1img.png" alt="" />
+        <img src="images/s2img.png" alt="" />
+        <img src="images/s3img.png" alt="" />
+        <img src="images/s4img.png" alt="" />
+        <!-- Duplicate for seamless scroll -->
+        <img src="images/s1img.png" alt="" />
+        <img src="images/s2img.png" alt="" />
+        <img src="images/s3img.png" alt="" />
+        <img src="images/s4img.png" alt="" />
+      </div>
+    </section>
+
+    <!-- ====== PHOTO GALLERY ======= -->
+    <section class="photo-gallery">
+      <h2 class="section-gallery-title">PHOTO GALLERY</h2>
+
+      <div class="gallery-wrapper">
+        <button class="gallery-btn prev">&#10094;</button>
+
+        <div class="gallery-slider">
+          <div class="gallery-track">
+            <img src="images/GALLERY1.png" alt="Gallery 1" />
+            <img src="images/GALLERY2.png" alt="Gallery 2" />
+            <img src="images/GALLERY3.png" alt="Gallery 3" />
+            <img src="images/GALLERY4.png" alt="Gallery 4" />
+            <img src="images/GALLERY5.png" alt="Gallery 5" />
+            <img src="images/GALLERY6.png" alt="Gallery 6" />
+            <img src="images/GALLERY7.png" alt="Gallery 7" />
+          </div>
+        </div>
+
+        <button class="gallery-btn next">&#10095;</button>
+      </div>
+
+      <div class="gallery-thumbnails">
+        <img src="images/GALLERY1.png" alt="Thumb 1" data-index="0" />
+        <img src="images/GALLERY2.png" alt="Thumb 2" data-index="1" />
+        <img src="images/GALLERY3.png" alt="Thumb 3" data-index="2" />
+        <img src="images/GALLERY4.png" alt="Thumb 4" data-index="3" />
+        <img src="images/GALLERY5.png" alt="Thumb 5" data-index="4" />
+        <img src="images/GALLERY6.png" alt="Thumb 6" data-index="5" />
+        <img src="images/GALLERY7.png" alt="Thumb 7" data-index="6" />
+      </div>
+    </section>
+
+    <!-- ========== OUR SERVICES ============= -->
+    <section class="our-services">
+      <h2 class="section-serv-title">OUR SERVICES</h2>
+      <div class="section-serv-container">
+        <div>
+          <img class="os-img" src="images/1s.png" alt="" />
+          <p class="strong-serv-p">Real Estate Done Right</p>
+          <p>Nervous about your property adventure? Don’t be. Whether you're getting ready to buy or sell your residence, looking at investment properties, or just curious about the markets, our team ensures you get the best experience possible!</p>
+        </div>
+        <div>
+          <img class="os-img" src="images/2s.png" alt="" />
+          <p class="strong-serv-p">Commercial & Residential</p>
+          <p>Large or small, condo or mansion, we can find it and get at the price that's right. Fixer-uppers? Luxury? We can help with all of it! We live, work, and play in this community. Happy to help you find where to put you hard-earned dollars.</p>
+        </div>
+        <div>
+          <img class="os-img" src="images/3s.png" alt="" />
+          <p class="strong-serv-p">Rely on Expertise</p>
+          <p>If you have questions about affordability, credit, and loan options, trust us to connect you with the right people to get the answers you need in a timely fashion. We make sure you feel confident and educated every step of the way.</p>
+        </div>
+      </div>
+    </section>
+
+
     <!-- ====== CONTACT SECTION ====== -->
     <section class="contact">
       <h2 class="section-title">Contact Us</h2>
@@ -204,83 +276,6 @@
     </footer>
 
     <!-- ====== JS for scroll + hamburger ====== -->
-    <script>
-      const header = document.getElementById("mainHeader");
-      const headerLogo = document.getElementById("headerLogo");
-
-      window.addEventListener("scroll", () => {
-        const scrolled = window.scrollY > 80;
-        header.classList.toggle("scrolled", scrolled);
-
-        // Swap logo based on scroll
-        if (scrolled) {
-          headerLogo.src = "images/logo.png"; // normal logo after scroll
-        } else {
-          headerLogo.src = "images/white-logo.png"; // white logo at top
-        }
-      });
-
-      // Make hero content transform on scroll
-      const heroOverlay = document.querySelector(".about-overlay");
-      window.addEventListener("scroll", () => {
-        const scrollY = window.scrollY;
-
-        // scale down the hero content a little
-        const scale = 1 - Math.min(scrollY / 1000, 0.1); // max shrink 10%
-        const translateY = Math.min(scrollY / 3, 50); // move up max 50px
-        const opacity = 1 - Math.min(scrollY / 400, 0.5); // fade a bit
-
-        heroOverlay.style.transform = `translateY(-${translateY}px) scale(${scale})`;
-        heroOverlay.style.opacity = opacity;
-      });
-
-      // Icon Hero zoom on scroll
-      const iconHero = document.querySelector(".icon-hero");
-      window.addEventListener("scroll", () => {
-        const iconTop = iconHero.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-
-        if (iconTop < windowHeight) {
-          // small zoom effect (scale up to 1.05)
-          const scale = 1 + (windowHeight - iconTop) / (windowHeight * 20);
-          iconHero.style.transform = `scale(${scale})`;
-        } else {
-          iconHero.style.transform = `scale(1)`; // reset if out of view
-        }
-      });
-
-      // Detect elements entering the viewport
-      const soldItems = document.querySelectorAll(".sold-item");
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("show");
-              observer.unobserve(entry.target); // animate once
-            }
-          });
-        },
-        { threshold: 0.2 } // triggers when 20% of the section is visible
-      );
-
-      soldItems.forEach((item) => observer.observe(item));
-
-      // find your dream home section
-      const dreamSection = document.querySelector(".find-dream-home");
-      const dreamObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              dreamSection.classList.add("show");
-              dreamObserver.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.3 }
-      );
-
-      dreamObserver.observe(dreamSection);
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
