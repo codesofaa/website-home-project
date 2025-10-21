@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marci Metzger Homes — Luxury Real Estate</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ====== HEADER SECTION ====== -->
+    <header class="fixed-header" id="mainHeader">
+      <div class="header-container">
+        <!-- Center logo -->
+        <img src="images/white-logo.png" alt="Logo" class="header-icon" />
+
+        <!-- Right side (nav + contact) -->
+        <div class="header-right">
+          <nav class="navbar">
+            <ul class="nav-links">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Listings</a></li>
+              <li><a href="#">Let's Move</a></li>
+              <li><a href="#">About Us</a></li>
+            </ul>
+            <!-- Hamburger button for mobile -->
+            <div class="hamburger" id="hamburger">
+              <span></span><span></span><span></span>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Spacer to push content below fixed header -->
+    <div class="header-space"></div>
+
+    <!-- ====== HERO SECTION ====== -->
+    <section class="about-hero">
+      <div class="about-overlay">
+        <h3>MARCI METZGER - THE RIDGE REALTY GROUP</h3>
+        <h2>Pahrump Realtor</h2>
+        <button>Call Now</button>
+      </div>
+    </section>
+
+    <!-- ====== ABOUT SECTION ====== -->
+    <section class="icon-hero">
+      <h1 class="section-title">MARCI METZGER</h1>
+      <img class="section-title-icon" src="images/icon.png" alt="" />
+      <h2 class="section-title-desc">REALTOR FOR NEARLY 3 DECADES!</h2>
+      <h3 class="section-title-num">206-919-6886</h3>
+    </section>
+
+    <!-- ====== GALLERY SECTION ====== -->
+    <section>
+      <h2 class="section-title">Featured Listings</h2>
+      <div class="photo-gallery">
+        <img
+          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80"
+          alt=""
+        />
+        <img
+          src="https://images.unsplash.com/photo-1560185008-5f0bb1866cab?auto=format&fit=crop&w=400&q=80"
+          alt=""
+        />
+        <img
+          src="https://images.unsplash.com/photo-1600607687920-4e2a5d29a3b9?auto=format&fit=crop&w=400&q=80"
+          alt=""
+        />
+      </div>
+    </section>
+
+    <!-- ====== CONTACT SECTION ====== -->
+    <section class="contact">
+      <h2 class="section-title">Contact Us</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer>
+      <p>&copy; 2025 Marci Metzger Homes. All rights reserved.</p>
+    </footer>
+
+    <!-- ====== JS for scroll + hamburger ====== -->
+    <script>
+const header = document.getElementById("mainHeader");
+const headerLogo = document.getElementById("headerLogo");
+
+window.addEventListener("scroll", () => {
+  const scrolled = window.scrollY > 80;
+  header.classList.toggle("scrolled", scrolled);
+
+  // Swap logo based on scroll
+  if (scrolled) {
+    headerLogo.src = "images/logo.png"; // normal logo after scroll
+  } else {
+    headerLogo.src = "images/white-logo.png"; // white logo at top
+  }
+});
+
+
+      // Make hero content transform on scroll
+      const heroOverlay = document.querySelector(".about-overlay");
+      window.addEventListener("scroll", () => {
+        const scrollY = window.scrollY;
+
+        // scale down the hero content a little
+        const scale = 1 - Math.min(scrollY / 1000, 0.1); // max shrink 10%
+        const translateY = Math.min(scrollY / 3, 50); // move up max 50px
+        const opacity = 1 - Math.min(scrollY / 400, 0.5); // fade a bit
+
+        heroOverlay.style.transform = `translateY(-${translateY}px) scale(${scale})`;
+        heroOverlay.style.opacity = opacity;
+      });
+    </script>
+  </body>
+</html>
