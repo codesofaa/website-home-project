@@ -314,16 +314,98 @@
       </div>
     </section>
 
-    <!-- ====== CONTACT SECTION ====== -->
-    <section class="contact">
-      <h2 class="section-title">Contact Us</h2>
-      <form>
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message" rows="5" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
+    <!-- ========== CALL OR VISIT SECTION ========== -->
+    <section class="contact-section">
+      <h2 class="section-contact-title">Call or Visit</h2>
+
+      <div class="contact-container">
+        <!-- Left side: Send Message form -->
+        <div class="contact-form">
+          <h3>Send Message</h3>
+          <form action="#" method="POST">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your Name"
+              required
+            />
+
+            <label for="email">Email*</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your Email"
+              required
+            />
+
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              placeholder="Write your message..."
+            ></textarea>
+
+            <button type="submit" class="send-btn">Send</button>
+          </form>
+          <p class="recaptcha-note">
+            This site is protected by reCAPTCHA and the Google Privacy Policy
+            and Terms of Service apply.
+          </p>
+        </div>
+
+        <!-- Right side: Visit Info -->
+        <div class="visit-info">
+          <h3>
+            <a
+              href="https://api.whatsapp.com/send/?phone=14259412560&text&type=phone_number&app_absent=0"
+              class="whatsapp-btn"
+              target="_blank"
+            >
+              <i class="fab fa-whatsapp"></i>
+              Message us on WhatsApp
+            </a>
+          </h3>
+
+          <h2><strong>Marci Metzger - THE RIDGE REALTY GROUP</strong></h2>
+          <p>3190 HW-160, Suite F, Pahrump, Nevada 89048, United States</p>
+
+          <p>
+            <strong>Phone:</strong>
+            <a href="tel:+12069196886">(206) 919-6886</a>
+          </p>
+
+          <div class="office-hours">
+            <h2>Office Hours</h2>
+            <p><strong>Open today:</strong> 08:00 am – 07:00 pm</p>
+            <p>Open daily 8:00 am - 7:00 pm</p>
+            <p>
+              Appointments outside office hours available upon request. Just
+              call!
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <!-- ===============MAP================ -->
+<section class="map-section">
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.7600303092553!2d-115.98083402479228!3d36.2068784724258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c8e6c6a2c88a5f%3A0x9a8e8ed1f65b2e2f!2s3190%20NV-160%20Suite%20F%2C%20Pahrump%2C%20NV%2089048%2C%20USA!5e0!3m2!1sen!2sph!4v1706011111111!5m2!1sen!2sph"
+      width="100%"
+      height="450"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+</section>
+
 
     <!-- ====== FOOTER ====== -->
     <footer>
