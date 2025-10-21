@@ -711,6 +711,76 @@ section {
   line-height: 1.6;
 }
 
+
+/* ================= SOCIAL MEDIA =================== */
+/* ========== SOCIAL MEDIA SECTION ========== */
+.social-media {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: #faf9f7;
+  font-family: "Poppins", sans-serif;
+}
+
+.social-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  color: #1f1f1f;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.social-links a {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #c19b6b; /* gold accent */
+  font-size: 1.5rem;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.social-links a:hover {
+  color: white;
+  background-color: #c19b6b;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(193, 155, 107, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .social-links {
+    gap: 18px;
+  }
+
+  .social-links a {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 /* Responsive */
 @media (max-width: 900px) {
   .section-serv-container {
