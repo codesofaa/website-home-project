@@ -154,7 +154,7 @@ body {
   background-attachment: fixed;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   text-align: center;
   overflow: hidden;
   flex-grow: 1;
@@ -193,8 +193,8 @@ body {
 
 .about-overlay h2 {
   font-family: "Playfair Display", serif;
-  font-size: 2rem;
-  font-weight: 300;
+  font-size: 4.5rem;
+  font-weight: 200;
   margin-bottom: 25px;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
 }
@@ -206,16 +206,18 @@ body {
   color: #111;
   font-weight: 700;
   border: none;
-  border-radius: 5px;
+  border-radius: 0%;
   cursor: pointer;
   font-size: 1rem;
   transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Elegant shadow */
 }
 
 .about-overlay button:hover {
   transform: translateY(-3px) scale(1.05);
-  background-color: #c19b6b;
+  background-color: green;
 }
+
 
 /* ========== GENERAL SECTIONS ========== */
 section {
@@ -533,7 +535,8 @@ section {
 }
 
 .section-gallery-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: 300;
   margin-bottom: 20px;
 }
 
@@ -544,8 +547,8 @@ section {
 }
 
 .gallery-main {
-  width: 80%;
-  max-width: 800px;
+  width: 100%;
+  max-width: 1000px;
   margin-bottom: 20px;
 }
 
