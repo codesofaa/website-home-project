@@ -1,3 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
 /* ========== RESET & GLOBAL ========== */
 html,
 body {
@@ -27,6 +37,8 @@ body {
 
 .header-container {
   display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 1;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -113,7 +125,6 @@ body {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-
 .fixed-header.scrolled .nav-links {
   transform: scale(0.9);
   transition: transform 0.3s ease;
@@ -137,7 +148,7 @@ body {
   position: relative;
   width: 100%;
   height: 100vh;
-  max-width: 2000px;
+  max-width: 100%;
   background: url("images/background-section.png") center center / cover
     no-repeat;
   background-attachment: fixed;
@@ -146,6 +157,9 @@ body {
   align-items: center;
   text-align: center;
   overflow: hidden;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: auto;
 }
 
 .about-hero::before {
@@ -218,10 +232,10 @@ section {
 /* ============= ICON HERO SECTION ============= */
 .icon-hero {
   background-color: #111;
-  max-width: 2000px;
+  max-width: 100%;
   color: white;
   text-align: center;
-  padding: 80px 20px;
+  padding: 80px 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -270,7 +284,7 @@ section {
 
 /* ============= GET IT SOLD ============== */
 .getitsold {
-  padding: 50px 20px;
+  padding: 50px 5%;
   max-width: 1000px;
   margin: auto;
 }
@@ -338,7 +352,7 @@ section {
   color: #333;
   text-align: center;
   min-height: 100vh;
-  max-width: 2000px;
+  max-width: 100%;
 }
 
 .find-dream-home .bg-video {
@@ -477,19 +491,14 @@ section {
 
 /* ==============SPONSOR IMG=============== */
 .sponsor-section {
-  width: 100%;
-  max-width: 2000px;
   overflow: hidden;
-  background: white;
-  padding: 40px 0;
 }
 
 .sponsor-img {
   display: flex;
-  align-items: center;
-  gap: 200px;
-  animation: scrollSponsors 25s linear infinite;
-  width: max-content;
+  gap: 80px; /* reduce */
+  width: 100%;
+  animation: scrollSponsors 30s linear infinite;
 }
 
 .sponsor-img img {
@@ -516,7 +525,7 @@ section {
   }
 }
 
-/* ======PHOTO GALLERY========= */
+/* ====== PHOTO GALLERY ====== */
 
 .photo-gallery {
   text-align: center;
@@ -543,9 +552,11 @@ section {
   margin: 0 auto 40px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
 }
 
-/* Slider Frame (shows partial slides) */
+/* Slider Frame */
 .gallery-slider {
   overflow: hidden;
   width: 100%;
@@ -556,19 +567,16 @@ section {
 .gallery-track {
   display: flex;
   transition: transform 0.8s ease-in-out;
-  gap: 20px;
-  padding: 0 5%;
-
 }
 
 .gallery-track img {
-  width: 98%;
+  width: 100%;
   flex-shrink: 0;
   border-radius: 20px;
   object-fit: cover;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.30);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   transition: transform 0.4s ease, opacity 0.4s ease;
-    opacity: 0.83;
+  opacity: 0.83;
 }
 
 .gallery-track img.active {
@@ -576,35 +584,37 @@ section {
   opacity: 1;
 }
 
-/* Arrows */
+/* Invisible buttons */
 .gallery-btn {
-  background-color: none;
+  background: none;
   border: none;
   font-size: 2rem;
-  color: white;
+  color: transparent;  /* Make button text invisible */
   padding: 10px 15px;
   border-radius: 50%;
   cursor: pointer;
   transition: 0.3s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 10;
-  opacity: 0.1;
-  justify-content: flex-start;
-  flex-direction: column;
-  
-}
-
-.gallery-btn:hover {
-  background-color: none;
-  color: #fff;
-  opacity: 0.2;
+  width: 50px;  /* Ensure the clickable area is large enough */
+  height: 50px;
+  /* Optional: you can add an icon background here if needed, e.g., left-arrow and right-arrow */
 }
 
 .gallery-btn.prev {
-  margin-right: -50px;
+  left: 10px;
 }
 
 .gallery-btn.next {
-  margin-left: -50px;
+  right: 10px;
+}
+
+/* Optional: you could add a "hover effect" for better UX, but keeping it invisible */
+.gallery-btn:hover {
+  opacity: 0.5;
+  background-color: rgba(0, 0, 0, 0.2); /* Light background for visibility */
 }
 
 /* Thumbnails */
@@ -613,6 +623,7 @@ section {
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
+  padding: 0 10px;
 }
 
 .gallery-thumbnails img {
@@ -633,10 +644,91 @@ section {
   border-color: #333;
 }
 
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Large tablets / small laptops */
+@media (max-width: 1024px) {
+  .section-gallery-title {
+    font-size: 2rem;
+  }
+
+  .gallery-track {
+    gap: 15px;
+    padding: 0 3%;
+  }
+
+  .gallery-thumbnails img {
+    width: 75px;
+    height: 50px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .photo-gallery {
+    padding: 60px 0;
+  }
+
+  .section-gallery-title {
+    font-size: 1.8rem;
+  }
+
+  .gallery-track img {
+    border-radius: 15px;
+  }
+
+  .gallery-btn {
+    font-size: 1.8rem;
+    opacity: 0.6;
+  }
+
+  .gallery-thumbnails img {
+    width: 70px;
+    height: 45px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .photo-gallery {
+    padding: 50px 0;
+  }
+
+  .section-gallery-title {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+
+  .gallery-track {
+    gap: 10px;
+    padding: 0 2%;
+  }
+
+  .gallery-track img {
+    border-radius: 10px;
+  }
+
+  .gallery-btn {
+    font-size: 1.4rem;
+    opacity: 0.7;
+  }
+
+  .gallery-thumbnails {
+    gap: 6px;
+  }
+
+  .gallery-thumbnails img {
+    width: 60px;
+    height: 40px;
+  }
+}
+
+
+
 /* ========== OUR SERVICES SECTION ========== */
 .our-services {
   padding: 80px 20px;
-  max-width: 1300px;
+  max-width: 100%;
   margin: 0 auto;
   text-align: center;
   font-family: "Poppins", sans-serif;
@@ -706,13 +798,11 @@ section {
   line-height: 1.6;
 }
 
-
 /* ================= SOCIAL MEDIA =================== */
 /* ========== SOCIAL MEDIA SECTION ========== */
 .social-media {
   text-align: center;
   padding: 80px 20px;
-  background-color: #faf9f7;
   font-family: "Poppins", sans-serif;
 }
 
@@ -753,19 +843,12 @@ section {
   box-shadow: 0 8px 25px rgba(193, 155, 107, 0.4);
 }
 
-
-
-
-
-
-
-
-
 /* ========== CONTACT SECTION ========== */
 .contact-section {
   padding: 80px 10%;
   background: #f8f9fa;
   text-align: center;
+  max-width: 100%;
 }
 
 .section-contact-title {
@@ -775,6 +858,7 @@ section {
   font-weight: 600;
 }
 
+/* --- Flex Layout --- */
 .contact-container {
   display: flex;
   justify-content: space-between;
@@ -783,14 +867,16 @@ section {
   flex-wrap: wrap;
 }
 
-.contact-form, .visit-info {
+.contact-form,
+.visit-info {
   flex: 1;
   min-width: 350px;
   background: white;
   padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   text-align: left;
+  transition: all 0.3s ease;
 }
 
 /* ========== INPUT FIELDS UNDERLINE STYLE ========== */
@@ -830,7 +916,6 @@ section {
   cursor: pointer;
   transition: 0.3s;
   font-family: "Playfair Display", serif;
-
   font-weight: 600;
 }
 
@@ -871,7 +956,7 @@ section {
   box-shadow: 0 6px 14px rgba(37, 211, 102, 0.4);
 }
 
-
+/* ========== VISIT INFO TEXTS ========== */
 .visit-info h3 {
   display: flex;
   align-items: center;
@@ -885,7 +970,8 @@ section {
   color: #333;
 }
 
-.visit-info p, .visit-info a {
+.visit-info p,
+.visit-info a {
   color: #252525;
   line-height: 1.6;
   text-decoration: none;
@@ -895,12 +981,88 @@ section {
   color: #0a66c2;
 }
 
+/* ===================================================
+   ✅ RESPONSIVE DESIGN FIXES
+   =================================================== */
+
+/* --- Tablets (≤1024px) --- */
+@media (max-width: 1024px) {
+  .contact-container {
+    gap: 30px;
+  }
+
+  .section-contact-title {
+    font-size: 1.8rem;
+  }
+
+  .contact-form,
+  .visit-info {
+    min-width: 300px;
+    padding: 25px;
+  }
+}
+
+/* --- Mobile (≤768px) --- */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 60px 6%;
+  }
+
+  .contact-container,
+  .sold-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .contact-form,
+  .visit-info {
+    width: 100%;
+    min-width: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  }
+
+  .send-btn {
+    width: 100%;
+  }
+
+  .whatsapp-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* --- Small Mobile (≤480px) --- */
+@media (max-width: 480px) {
+  .section-contact-title {
+    font-size: 1.5rem;
+  }
+
+  .contact-form label {
+    font-size: 0.9rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 0.9rem;
+  }
+
+  .whatsapp-btn {
+    font-size: 0.9rem;
+    padding: 10px 18px;
+  }
+
+  .whatsapp-btn i {
+    font-size: 1.4rem;
+  }
+}
 
 /* ====== MAP SECTION ====== */
 .map-section {
-  padding: 60px 20px;
+  padding: 60px 5%;
   background-color: #fafafa;
   text-align: center;
+  max-width: 100%;
 }
 
 .map-section .section-title {
@@ -908,11 +1070,11 @@ section {
   font-weight: 600;
   color: #333;
   margin-bottom: 25px;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
 }
 
 .map-container {
-  max-width: 1100px;
+  max-width: 100%;
   margin: 0 auto;
   border-radius: 15px;
   overflow: hidden;
@@ -925,13 +1087,6 @@ section {
   border: none;
 }
 
-
-
-
-
-
-
-
 /* Responsive layout */
 @media (max-width: 900px) {
   .contact-container {
@@ -939,8 +1094,6 @@ section {
     align-items: center;
   }
 }
-
-
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
@@ -954,9 +1107,6 @@ section {
     font-size: 1.3rem;
   }
 }
-
-
-
 
 /* Responsive */
 @media (max-width: 900px) {
@@ -973,8 +1123,6 @@ section {
   }
 }
 
-
-
 /* Responsive */
 @media (max-width: 768px) {
   .gallery-track img {
@@ -987,7 +1135,6 @@ section {
   }
 }
 
-
 /* Responsive */
 @media (max-width: 768px) {
   .gallery-thumbnails img {
@@ -995,7 +1142,6 @@ section {
     height: 45px;
   }
 }
-
 
 /* ========== CONTACT SECTION ========== */
 .contact {

@@ -13,6 +13,8 @@ window.addEventListener("scroll", () => {
   }
 });
 
+
+
 // Make hero content transform on scroll
 const heroOverlay = document.querySelector(".about-overlay");
 window.addEventListener("scroll", () => {
@@ -74,78 +76,80 @@ const dreamObserver = new IntersectionObserver(
 );
 
 dreamObserver.observe(dreamSection);
+const galleryTrack = document.querySelector('.gallery-track');
+const galleryImages = document.querySelectorAll('.gallery-track img');
+const prevButton = document.querySelector('.gallery-btn.prev');
+const nextButton = document.querySelector('.gallery-btn.next');
+const thumbnails = document.querySelectorAll('.gallery-thumbnails img');
 
-// slider of photo gallery
+// Current index to keep track of the active image
+let currentIndex = 0;
 
-const track = document.querySelector(".gallery-track");
-const slides = document.querySelectorAll(".gallery-track img");
-const nextBtn = document.querySelector(".gallery-btn.next");
-const prevBtn = document.querySelector(".gallery-btn.prev");
-const thumbs = document.querySelectorAll(".gallery-thumbnails img");
+// Variables for swipe functionality
+let touchStartX = 0;
+let touchEndX = 0;
 
-// Clone first and last slides for infinite effect
-const firstClone = slides[0].cloneNode(true);
-const lastClone = slides[slides.length - 1].cloneNode(true);
-
-track.appendChild(firstClone);
-track.insertBefore(lastClone, slides[0]);
-
-let index = 1;
-const slideWidth = slides[0].clientWidth + 20; // +gap size
-track.style.transform = `translateX(-${slideWidth * index}px)`;
-
-function updateThumbnails() {
-  thumbs.forEach((t) => t.classList.remove("active"));
-  thumbs[(index - 1 + slides.length) % slides.length].classList.add("active");
-}
-
-function moveToSlide() {
-  track.style.transition = "transform 0.8s ease-in-out";
-  track.style.transform = `translateX(-${slideWidth * index}px)`;
-  updateThumbnails();
-}
-
-function nextSlide() {
-  if (index >= slides.length + 1) return;
-  index++;
-  moveToSlide();
-}
-
-function prevSlide() {
-  if (index <= 0) return;
-  index--;
-  moveToSlide();
-}
-
-nextBtn.addEventListener("click", nextSlide);
-prevBtn.addEventListener("click", prevSlide);
-
-// Reset position when reaching cloned slides (for infinite loop)
-track.addEventListener("transitionend", () => {
-  const realSlides = document.querySelectorAll(".gallery-track img");
-  if (realSlides[index].src === firstClone.src) {
-    track.style.transition = "none";
-    index = 1;
-    track.style.transform = `translateX(-${slideWidth * index}px)`;
+// Function to update the gallery slider
+function updateGallery(index) {
+  // Ensure the index stays within bounds
+  if (index < 0) {
+    currentIndex = galleryImages.length - 1;
+  } else if (index >= galleryImages.length) {
+    currentIndex = 0;
+  } else {
+    currentIndex = index;
   }
-  if (realSlides[index].src === lastClone.src) {
-    track.style.transition = "none";
-    index = slides.length;
-    track.style.transform = `translateX(-${slideWidth * index}px)`;
-  }
+
+  // Move the gallery track to the correct image
+  galleryTrack.style.transform = `translateX(-${100 * currentIndex}%)`;
+
+  // Update the active class for the images
+  galleryImages.forEach((img, idx) => {
+    img.classList.toggle('active', idx === currentIndex); // Make the current image visible
+  });
+
+  // Update the active thumbnail
+  thumbnails.forEach((thumb, idx) => {
+    thumb.classList.toggle('active', idx === currentIndex);
+  });
+}
+
+// Add click event listeners to the arrows
+prevButton.addEventListener('click', () => {
+  updateGallery(currentIndex - 1);
 });
 
-// Clickable thumbnails
-thumbs.forEach((thumb, i) => {
-  thumb.addEventListener("click", () => {
-    index = i + 1;
-    moveToSlide();
+nextButton.addEventListener('click', () => {
+  updateGallery(currentIndex + 1);
+});
+
+// Add click event listeners to the thumbnails
+thumbnails.forEach((thumb, idx) => {
+  thumb.addEventListener('click', () => {
+    updateGallery(idx);
   });
 });
 
-// Auto-slide every 5s
-setInterval(() => {
-  nextSlide();
-}, 5000);
+// Swipe functionality for mobile
+function handleTouchStart(e) {
+  touchStartX = e.changedTouches[0].screenX;  // Get starting position
+}
 
-updateThumbnails();
+function handleTouchEnd(e) {
+  touchEndX = e.changedTouches[0].screenX;    // Get ending position
+  if (touchEndX < touchStartX) {
+    // Swiped left (next image)
+    updateGallery(currentIndex + 1);
+  }
+  if (touchEndX > touchStartX) {
+    // Swiped right (previous image)
+    updateGallery(currentIndex - 1);
+  }
+}
+
+// Add swipe event listeners
+galleryTrack.addEventListener('touchstart', handleTouchStart);
+galleryTrack.addEventListener('touchend', handleTouchEnd);
+
+// Initialize the gallery to the first image
+updateGallery(currentIndex);
