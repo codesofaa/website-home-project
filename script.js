@@ -76,80 +76,34 @@ const dreamObserver = new IntersectionObserver(
 );
 
 dreamObserver.observe(dreamSection);
-const galleryTrack = document.querySelector('.gallery-track');
-const galleryImages = document.querySelectorAll('.gallery-track img');
-const prevButton = document.querySelector('.gallery-btn.prev');
-const nextButton = document.querySelector('.gallery-btn.next');
-const thumbnails = document.querySelectorAll('.gallery-thumbnails img');
 
-// Current index to keep track of the active image
+// JavaScript for Gallery Interaction
+const thumbnails = document.querySelectorAll('.thumb');
+const mainImage = document.getElementById('mainImage');
+const thumbnailLength = thumbnails.length;
 let currentIndex = 0;
 
-// Variables for swipe functionality
-let touchStartX = 0;
-let touchEndX = 0;
-
-// Function to update the gallery slider
-function updateGallery(index) {
-  // Ensure the index stays within bounds
-  if (index < 0) {
-    currentIndex = galleryImages.length - 1;
-  } else if (index >= galleryImages.length) {
-    currentIndex = 0;
-  } else {
-    currentIndex = index;
-  }
-
-  // Move the gallery track to the correct image
-  galleryTrack.style.transform = `translateX(-${100 * currentIndex}%)`;
-
-  // Update the active class for the images
-  galleryImages.forEach((img, idx) => {
-    img.classList.toggle('active', idx === currentIndex); // Make the current image visible
-  });
-
-  // Update the active thumbnail
-  thumbnails.forEach((thumb, idx) => {
-    thumb.classList.toggle('active', idx === currentIndex);
-  });
-}
-
-// Add click event listeners to the arrows
-prevButton.addEventListener('click', () => {
-  updateGallery(currentIndex - 1);
-});
-
-nextButton.addEventListener('click', () => {
-  updateGallery(currentIndex + 1);
-});
-
-// Add click event listeners to the thumbnails
-thumbnails.forEach((thumb, idx) => {
-  thumb.addEventListener('click', () => {
-    updateGallery(idx);
+// Change the main image when a thumbnail is clicked
+thumbnails.forEach((thumb) => {
+  thumb.addEventListener('click', function() {
+    const newSrc = this.src;
+    mainImage.src = newSrc;
+    currentIndex = thumbnails.indexOf(this);
   });
 });
 
-// Swipe functionality for mobile
-function handleTouchStart(e) {
-  touchStartX = e.changedTouches[0].screenX;  // Get starting position
-}
+// Automatic next function
+setInterval(() => {
+  currentIndex = (currentIndex + 1) % thumbnailLength;
+  const newSrc = thumbnails[currentIndex].src;
 
-function handleTouchEnd(e) {
-  touchEndX = e.changedTouches[0].screenX;    // Get ending position
-  if (touchEndX < touchStartX) {
-    // Swiped left (next image)
-    updateGallery(currentIndex + 1);
-  }
-  if (touchEndX > touchStartX) {
-    // Swiped right (previous image)
-    updateGallery(currentIndex - 1);
-  }
-}
+  // Add a CSS transition to smoothly animate the change in the main image source
+  mainImage.style.transition = 'opacity 1s ease';
+  mainImage.style.opacity = 0;
 
-// Add swipe event listeners
-galleryTrack.addEventListener('touchstart', handleTouchStart);
-galleryTrack.addEventListener('touchend', handleTouchEnd);
-
-// Initialize the gallery to the first image
-updateGallery(currentIndex);
+  // Update the main image source after the transition has completed
+  setTimeout(() => {
+    mainImage.src = newSrc;
+    mainImage.style.opacity = 1;
+  }, 1000);
+}, 5000); // Change the thumbnail every 5 seconds

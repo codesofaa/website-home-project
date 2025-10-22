@@ -525,203 +525,93 @@ section {
   }
 }
 
-/* ====== PHOTO GALLERY ====== */
 
+/* Photo Gallery */
 .photo-gallery {
+  padding: 40px;
   text-align: center;
-  max-width: 2000px;
-  padding: 80px 0;
-  font-family: "Poppins", sans-serif;
-  overflow: hidden;
 }
 
 .section-gallery-title {
-  font-family: "Playfair Display", serif;
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: #1f1f1f;
-  margin-bottom: 40px;
-  letter-spacing: 1px;
-}
-
-/* Outer Wrapper */
-.gallery-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: nowrap;
-}
-
-/* Slider Frame */
-.gallery-slider {
-  overflow: hidden;
-  width: 100%;
-  border-radius: 20px;
-  position: relative;
-}
-
-.gallery-track {
-  display: flex;
-  transition: transform 0.8s ease-in-out;
-}
-
-.gallery-track img {
-  width: 100%;
-  flex-shrink: 0;
-  border-radius: 20px;
-  object-fit: cover;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  opacity: 0.83;
-}
-
-.gallery-track img.active {
-  transform: scale(1.02);
-  opacity: 1;
-}
-
-/* Invisible buttons */
-.gallery-btn {
-  background: none;
-  border: none;
   font-size: 2rem;
-  color: transparent;  /* Make button text invisible */
-  padding: 10px 15px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: 0.3s ease;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 50px;  /* Ensure the clickable area is large enough */
-  height: 50px;
-  /* Optional: you can add an icon background here if needed, e.g., left-arrow and right-arrow */
+  margin-bottom: 20px;
 }
 
-.gallery-btn.prev {
-  left: 10px;
+.gallery-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.gallery-btn.next {
-  right: 10px;
+.gallery-main {
+  width: 80%;
+  max-width: 800px;
+  margin-bottom: 20px;
 }
 
-/* Optional: you could add a "hover effect" for better UX, but keeping it invisible */
-.gallery-btn:hover {
-  opacity: 0.5;
-  background-color: rgba(0, 0, 0, 0.2); /* Light background for visibility */
+#mainImage {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 
-/* Thumbnails */
 .gallery-thumbnails {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 10px;
-  padding: 0 10px;
+  flex-wrap: wrap;
 }
 
-.gallery-thumbnails img {
-  width: 90px;
-  height: 60px;
+.thumb {
+  width: 80px;
+  height: 80px;
   object-fit: cover;
-  border-radius: 6px;
   cursor: pointer;
-  opacity: 0.6;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
 }
 
-.gallery-thumbnails img.active,
-.gallery-thumbnails img:hover {
-  opacity: 1;
-  transform: scale(1.05);
-  border-color: #333;
+.thumb:hover {
+  transform: scale(1.1);
 }
 
-/* ===== RESPONSIVE BREAKPOINTS ===== */
-
-/* Large tablets / small laptops */
-@media (max-width: 1024px) {
-  .section-gallery-title {
-    font-size: 2rem;
-  }
-
-  .gallery-track {
-    gap: 15px;
-    padding: 0 3%;
-  }
-
-  .gallery-thumbnails img {
-    width: 75px;
-    height: 50px;
-  }
-}
-
-/* Tablets */
-@media (max-width: 768px) {
-  .photo-gallery {
-    padding: 60px 0;
-  }
-
-  .section-gallery-title {
-    font-size: 1.8rem;
-  }
-
-  .gallery-track img {
-    border-radius: 15px;
-  }
-
-  .gallery-btn {
-    font-size: 1.8rem;
-    opacity: 0.6;
-  }
-
-  .gallery-thumbnails img {
-    width: 70px;
-    height: 45px;
-  }
-}
-
-/* Mobile phones */
-@media (max-width: 480px) {
-  .photo-gallery {
-    padding: 50px 0;
-  }
-
-  .section-gallery-title {
-    font-size: 1.5rem;
-    margin-bottom: 25px;
-  }
-
-  .gallery-track {
-    gap: 10px;
-    padding: 0 2%;
-  }
-
-  .gallery-track img {
-    border-radius: 10px;
-  }
-
-  .gallery-btn {
-    font-size: 1.4rem;
-    opacity: 0.7;
+/* Media Query for Smaller Screens */
+@media screen and (max-width: 768px) {
+  .gallery-main {
+    width: 90%;
   }
 
   .gallery-thumbnails {
-    gap: 6px;
-  }
-
-  .gallery-thumbnails img {
-    width: 60px;
-    height: 40px;
+    justify-content: space-around;
   }
 }
+
+
+@media screen and (max-width: 480px) {
+  .gallery-thumbnails {
+    flex-shrink: 1;
+    min-width: none;
+    align-items: center;
+    gap: 4px; /* Add small gaps between thumbnails */
+    display: flex;
+    flex-wrap: wrap; /* Wrap thumbnails to next line if necessary */
+    justify-content: center; /* Center thumbnails horizontally */
+  }
+  
+  .gallery-thumbnails img {
+    width: calc(33.33% - 2px); /* Set thumbnail width to 33.33% minus 2px for gaps */
+    margin: 2px; /* Add 2px margin between thumbnails */
+  }
+  
+  @media screen and (max-width: 320px) {
+    .gallery-thumbnails img {
+      width: calc(50% - 2px); /* Set thumbnail width to 50% minus 2px for gaps */
+    }
+  }
+}
+
+
+
 
 
 
