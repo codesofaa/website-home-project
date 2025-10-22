@@ -9,7 +9,7 @@ video {
 }
 
 /* ========== RESET & GLOBAL ========== */
-html{
+html {
   overflow-x: hidden;
 }
 
@@ -108,7 +108,12 @@ body {
 }
 
 .nav-links.active .message {
-  background-color: rgba(0, 0, 0, 0.5); /* Set the background color for the message element */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Set the background color for the message element */
   /* ... rest of the styles ... */
 }
 
@@ -231,7 +236,6 @@ body {
   background-color: green;
 }
 
-
 /* ========== GENERAL SECTIONS ========== */
 section {
   padding: 50px 20px;
@@ -300,13 +304,13 @@ section {
 /* ============= GET IT SOLD ============== */
 .getitsold {
   padding: 50px 5%;
-  max-width: 1000px;
-  margin: auto;
+  max-width: 100%;
+  margin: 0;
 }
 
 .section-sold-title {
   font-family: "Playfair Display", serif;
-  font-size: 2.2rem;
+  font-size: 3rem;
   font-weight: 300;
   margin-bottom: 40px;
   text-align: center;
@@ -316,7 +320,7 @@ section {
 .sold-item {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 40px; /* increased gap between the flex items */
   margin-bottom: 50px;
   flex-wrap: wrap;
   opacity: 0;
@@ -336,7 +340,7 @@ section {
 
 .sold-img img {
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
   border-radius: 8px;
   transition: transform 0.5s ease;
 }
@@ -348,7 +352,7 @@ section {
 .sold-text {
   flex: 1;
   font-family: "Cormorant Garamond", serif;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 200;
   line-height: 1.8;
   color: #333;
@@ -357,7 +361,7 @@ section {
 .sold-text strong {
   color: black;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 /* ============ FIND YOUR DREAM HOME (with background video) ============ */
@@ -540,7 +544,6 @@ section {
   }
 }
 
-
 /* Photo Gallery */
 .photo-gallery {
   padding: 00px;
@@ -602,7 +605,6 @@ section {
   }
 }
 
-
 @media screen and (max-width: 480px) {
   .gallery-thumbnails {
     flex-shrink: 1;
@@ -613,23 +615,22 @@ section {
     flex-wrap: wrap; /* Wrap thumbnails to next line if necessary */
     justify-content: center; /* Center thumbnails horizontally */
   }
-  
+
   .gallery-thumbnails img {
-    width: calc(33.33% - 2px); /* Set thumbnail width to 33.33% minus 2px for gaps */
+    width: calc(
+      33.33% - 2px
+    ); /* Set thumbnail width to 33.33% minus 2px for gaps */
     margin: 2px; /* Add 2px margin between thumbnails */
   }
-  
+
   @media screen and (max-width: 320px) {
     .gallery-thumbnails img {
-      width: calc(50% - 2px); /* Set thumbnail width to 50% minus 2px for gaps */
+      width: calc(
+        50% - 2px
+      ); /* Set thumbnail width to 50% minus 2px for gaps */
     }
   }
 }
-
-
-
-
-
 
 /* ========== OUR SERVICES SECTION ========== */
 .our-services {
