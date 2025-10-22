@@ -1,3 +1,4 @@
+
 const header = document.getElementById("mainHeader");
 const headerLogo = document.getElementById("headerLogo");
 
@@ -27,6 +28,7 @@ window.addEventListener("scroll", () => {
 
   heroOverlay.style.transform = `translateY(-${translateY}px) scale(${scale})`;
   heroOverlay.style.opacity = opacity;
+  heroOverlay.style.overflowX = "hidden"; // add this line to remove horizontal overflow
 });
 
 // Icon Hero zoom on scroll
@@ -107,3 +109,10 @@ setInterval(() => {
     mainImage.style.opacity = 1;
   }, 1000);
 }, 5000); // Change the thumbnail every 5 seconds
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
